@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Isaiah Muhammad — Director of Marketing & Brand Strategy</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script>
+// ============================================================
+//  ✏️  YOUR CONTENT — EDIT ANYTHING IN HERE
+//
+//  Rules:
+//  • Change text between the quote marks " "
+//  • If your text contains an apostrophe, use \'  (e.g. "I\'m ready")
+//  • Don't delete commas, brackets, or curly braces
+//  • To add a new list item, copy an existing line and paste it
+//  • Save the file, then re-upload to Netlify — your URL stays the same
+// ============================================================
+
+const CONTENT = {
+
+  // ── NAV BAR ──────────────────────────────────────────────
+  nav: {
+    name: "Isaiah Muhammad",
+    links: [
+      { label: "About",    href: "#about" },
+      { label: "Journey",  href: "#journey" },
+      { label: "Skills",   href: "#skills" },
+      { label: "Homeboy",  href: "#fit" },
+      { label: "Contact",  href: "#contact" },
+    ]
+  },
+
+  // ── HERO (top section) ───────────────────────────────────
+  hero: {
+    eyebrow:      "Director of Marketing & Brand Strategy",
+    // Each string below becomes its own line in the big headline
+    headline:     ["Communications.", "Community.", "Care."],
+    // Paste one of the lines above here to highlight it in gold
+    headlineGold: "Care.",
+    sub: "Ten years of communications work rooted in South LA — in the neighborhoods, the council offices, the org chart gaps, and the spaces where story actually changes things.",
+    cta1Label: "My Story",     cta1Href: "#about",
+    cta2Label: "Why Homeboy",  cta2Href: "#fit",
+    // The 4 stat cards on the right
+    stats: [
+      { num: "10+", title: "Years in the field",             sub: "Nonprofit · Government · Civic · Cultural — mostly in and around South LA" },
+      { num: "25%", title: "Efficiency gain at DPN",         sub: "Built their communications infrastructure from the ground up" },
+      { num: "8+",  title: "Orgs I\'ve served",              sub: "From city hall to state senate to grassroots justice organizations" },
+      { num: "5",   title: "Years living in South LA",       sub: "Windsor Hills raised, South LA rooted — this is home" },
+    ]
+  },
+
+  // ── ABOUT (cream section) ────────────────────────────────
+  about: {
+    sectionTag: "Who I Am",
+    headline:   "I grew up five minutes from where this work happens.",
+    // Each string is its own paragraph
+    body: [
+      "I\'m Isaiah — a communicator, organizer, and community member who has spent his career trying to make good organizations easier to understand and harder to ignore. I grew up in Windsor Hills, right on the edge of South LA, and I\'ve lived here for the last five years. This isn\'t a community I\'m coming to serve from the outside. It\'s where I live, where I raise my family, and where I\'ve done some of the most meaningful work of my life.",
+      "My connection to Homeboy\'s mission isn\'t abstract. My wife\'s father came to this country and made choices that changed the course of his life. He\'s been rebuilding — slowly, with real dignity, and without nearly enough support. Watching that process up close has made the work Homeboy does feel urgent to me in a way that a job description never could.",
+      "I\'ve spent ten years learning how to tell the stories that move people to care, to give, to show up. I want to put that to work here.",
+    ],
+    pullQuote: "\"As each has received a gift, use it to serve one another, as good stewards of God\'s varied grace.\" — 1 Peter 4:10",
+    // The 6 value cards
+    values: [
+      { num: "01", title: "Purpose First",  desc: "I need to believe in what I\'m working on. Not just professionally — personally." },
+      { num: "02", title: "Grow Forward",   desc: "I try to learn something every day and actually apply it." },
+      { num: "03", title: "Over-Deliver",   desc: "I hold myself to a high standard — not to impress, but because people deserve that." },
+      { num: "04", title: "Experiment",     desc: "I don\'t think inside or outside the box. I try to forget there is one." },
+      { num: "05", title: "Be Love",        desc: "People can feel when you actually care about them. I try to be that." },
+      { num: "06", title: "Build Systems",  desc: "Good work should outlast the person who did it. I build accordingly." },
+    ]
+  },
+
+  // ── JOURNEY (timeline section) ───────────────────────────
+  journey: {
+    sectionTag: "How I Got Here",
+    headline:   "A decade of work that kept circling back to South LA.",
+    sub: "Every role taught me something different about how stories move people — and how institutions either earn or lose trust with their communities.",
+    stops: [
+      {
+        year:  "2025 – Present",
+        role:  "Alumni Engagement Manager",
+        org:   "Corps to Career / California Volunteers, Office of the Governor",
+        desc:  "Working with AmeriCorps alumni across California — tracking engagement data, building employer partnerships, and co-leading our annual career fair. A lot of relationship-tending and trying to make a state program feel personal.",
+        badge: "State Government · Data · Engagement"
+      },
+      {
+        year:  "2023 – Present",
+        role:  "Communications Manager",
+        org:   "Dignity & Power Now",
+        desc:  "Started with almost nothing in place. Built out their comms infrastructure — newsletter, mini-documentary, coalition media systems, photo series. Cut inefficiency by 25% and helped shift how funders and partners saw the org.",
+        badge: "Social Justice · Brand Build · Multimedia"
+      },
+      {
+        year:  "2021 – Present",
+        role:  "Communications Manager / Lead",
+        org:   "The Oasis Worldwide & The Oasis International",
+        desc:  "Helped grow community engagement by 30% through more intentional communication. Led a brand identity process that helped the org get clearer on who they were and who they were for.",
+        badge: "Cultural Org · Brand Strategy · Community"
+      },
+      {
+        year:  "2018 – 2019",
+        role:  "Area / District Representative",
+        org:   "California State Senate (Senator Holly Mitchell)",
+        desc:  "Senator Mitchell\'s area rep for South LA — which meant showing up in rooms where things got decided and making sure our communities were represented. Criminal justice reform, emergency preparedness, FCC hearings.",
+        badge: "Legislative · Policy · Political Comms"
+      },
+      {
+        year:  "2017 – 2018",
+        role:  "Field Deputy / Representative",
+        org:   "City of Los Angeles (Councilwoman Monica Rodriguez)",
+        desc:  "Direct support for the Councilwoman on special projects. Worked with neighbors, city departments, and community orgs to get things done at the block level.",
+        badge: "City Government · Community Relations"
+      },
+      {
+        year:  "2014 – 2016",
+        role:  "Media Liaison",
+        org:   "Community Coalition",
+        desc:  "My first real taste of the intersection of organizing and communications. Worked on Prop 47, managed press, helped tell the story of why criminal justice reform mattered to real families.",
+        badge: "Media Relations · Coalition · Advocacy"
+      },
+    ]
+  },
+
+  // ── SKILLS (dark navy section) ───────────────────────────
+  skills: {
+    sectionTag: "What I Know How to Do",
+    headline:   "Practical skills, built doing the actual work.",
+    sub: "I\'ve never had the luxury of just planning. Every place I\'ve worked, I had to build and execute at the same time — often with less than I needed.",
+    // icon options: "layers" "users" "video" "chart" "mail" "people"
+    cards: [
+      {
+        icon:  "layers",
+        title: "Brand & Narrative Strategy",
+        body:  "Helping organizations get clear on who they are, who they\'re for, and how they talk about what they do. I\'ve done this from scratch at small orgs and within larger institutions.",
+        tags:  ["Brand Architecture", "Messaging", "Identity"]
+      },
+      {
+        icon:  "users",
+        title: "Community & Stakeholder Engagement",
+        body:  "Building real relationships with the people an org depends on — not just maintaining a contact list. I\'ve done this in coalition spaces, city halls, and one-on-one conversations.",
+        tags:  ["Stakeholder Relations", "Coalition Building", "Outreach"]
+      },
+      {
+        icon:  "video",
+        title: "Content & Campaign Production",
+        body:  "I\'ve produced newsletters, mini-documentaries, photo series, press materials, and social campaigns. I know how to manage creatives and how to stay in the work myself when needed.",
+        tags:  ["Multimedia", "Editorial", "Campaign Design"]
+      },
+      {
+        icon:  "chart",
+        title: "Data & Reporting",
+        body:  "I track things. Not obsessively, but carefully. I\'ve built engagement dashboards, legislative maps, and CRM systems that actually got used because they were designed with the user in mind.",
+        tags:  ["Analytics", "CRM", "Reporting"]
+      },
+      {
+        icon:  "mail",
+        title: "Media & Press Relations",
+        body:  "I know how to get a story placed, how to prepare someone for an interview, and how to write a press release that doesn\'t sound like a press release. I\'ve worked local and national press.",
+        tags:  ["Press Relations", "Earned Media", "Media Kits"]
+      },
+      {
+        icon:  "people",
+        title: "Team Leadership",
+        body:  "I\'ve managed small comms teams, contractors, and interns. I try to lead the way I\'d want to be led — with clear expectations, honest feedback, and genuine investment in the people I work with.",
+        tags:  ["Team Management", "Coaching", "Workflow Design"]
+      },
+    ]
+  },
+
+  // ── HOMEBOY FIT (cream section) ──────────────────────────
+  fit: {
+    sectionTag: "Why Homeboy",
+    headline:   "I\'ve been looking for a role that actually means something to me.",
+    sub: "I\'ve worked at good organizations. But this one is different. Homeboy\'s mission isn\'t something I respect from a distance — it\'s something I understand up close.",
+    cards: [
+      {
+        title: "My father-in-law is trying to rebuild his life",
+        body:  "He came to this country, made some choices, and has been living with the consequences for years. Watching him work to rebuild — with real dignity and not nearly enough support — has made Homeboy\'s mission feel personal in a way I couldn\'t manufacture if I tried. I understand what it means to a family when someone gets a real second chance."
+      },
+      {
+        title: "I grew up here. I live here now.",
+        body:  "Windsor Hills, five minutes from South LA. I\'ve spent the last five years living in South LA itself. I\'ve organized in these neighborhoods, knocked on these doors, and worked in the offices that are supposed to represent these communities. I\'m not parachuting in."
+      },
+      {
+        title: "Homeboy\'s story deserves to travel further",
+        body:  "The transformation happening inside Homeboy\'s walls is extraordinary. But the story of it — the full, human, complicated story — isn\'t reaching everyone it could. That gap is what I know how to close."
+      },
+      {
+        title: "This is the kind of work I want to wake up for",
+        body:  "I\'ve spent my career choosing organizations whose missions I could stand behind. But this is the first time I\'ve found one where my professional skills, my community roots, and something genuinely personal all point in the same direction."
+      },
+    ],
+    vision: {
+      headline: "What the first 90 days would look like",
+      body:     "Mostly listening. Then some honest assessment of where the story is landing and where it isn\'t. Then building the systems to close that gap — carefully, collaboratively, without breaking what\'s already working.",
+      points: [
+        { num: "01", title: "Listen first",            body: "Understand the org from the inside before trying to change anything. Talk to everyone. Read everything." },
+        { num: "02", title: "Map the gaps",            body: "Where is Homeboy\'s story not landing? Who isn\'t hearing it? What\'s the distance between mission and message?" },
+        { num: "03", title: "Build with the team",     body: "Whatever comes next gets built together. I don\'t come in with a plan that ignores the people who\'ve been doing this work." },
+      ]
+    }
+  },
+
+  // ── PERSONALITY ──────────────────────────────────────────
+  personality: {
+    sectionTag: "Who I Am Outside the Resume",
+    headline:   "A few things that don\'t fit in a job description.",
+    sub: "I think the person matters as much as the skillset. Here\'s some of what makes me, me.",
+    traits: [
+      { label: "Reliable",    desc: "If I say I\'ll do it, I do it. That\'s just baseline for me." },
+      { label: "Empathetic",  desc: "I genuinely try to understand where people are coming from before I respond." },
+      { label: "Ambitious",   desc: "I want to do important work well. That drive doesn\'t really turn off." },
+      { label: "Resourceful", desc: "I\'ve rarely had everything I needed. I\'ve learned to work with what\'s there." },
+      { label: "Impactful",   desc: "I measure my work by what actually changed for people — not what got produced." },
+    ],
+    frameworks: [
+      { label: "Myers-Briggs",   value: "INFJ — The Advocate" },
+      { label: "Enneagram",      value: "Type 4w3 — The Enthusiast" },
+      { label: "Medicine Wheel", value: "The Deer + The Buffalo" },
+      { label: "Astrology",      value: "Aquarius ☀ Gemini ☾ Aquarius ↗" },
+    ],
+    beyondWork: "I make electronic music — UK garage and future house — under the name Friend of Man. My wife Sadé and I are relaunching a recording studio and creative space in Hyde Park called the Oasis. We have a young son at home. I\'m also building UBLA, a community org focused on health, wealth, and political power for Black men in LA. South LA isn\'t just where I work — it\'s where my life is."
+  },
+
+  // ── SWOT ─────────────────────────────────────────────────
+  swot: {
+    sectionTag: "Honest Self-Assessment",
+    headline:   "What I\'m good at. Where I\'m still growing.",
+    sub: "I\'d rather be honest here than oversell myself. If we work together, you\'ll find out anyway.",
+    quadrants: [
+      {
+        letter: "S", title: "Real Strengths",
+        items: [
+          "I can build a communications program from nothing — I\'ve done it more than once",
+          "I know South LA, its orgs, its politics, and its people",
+          "I can write, produce, strategize, and execute — not always at the same time, but close",
+          "I genuinely care about this mission in a way that shows up in the work",
+          "I build systems that other people can actually use after I\'ve built them",
+        ]
+      },
+      {
+        letter: "W", title: "Where I\'m Growing",
+        items: [
+          "I go all-in naturally — I\'m actively working on pacing myself better",
+          "I sometimes move to execution before I\'ve fully slowed down to plan",
+          "Delegation doesn\'t come as naturally to me as doing — I\'m getting better at it",
+        ]
+      },
+      {
+        letter: "O", title: "What I See",
+        items: [
+          "Homeboy\'s story has global reach that isn\'t fully activated yet",
+          "The social enterprise angle is deeply compelling to audiences who aren\'t hearing it",
+          "There\'s real documentary and multimedia potential in the everyday work happening here",
+          "My existing relationships across LA\'s civic and nonprofit world are immediately useful",
+        ]
+      },
+      {
+        letter: "T", title: "What I\'d Watch For",
+        items: [
+          "Resource constraints in nonprofits are real — I\'ve learned to work within them, but they require honesty upfront",
+          "The political climate around criminal justice shifts fast — messaging has to stay nimble",
+          "A large org with many programs needs real brand consistency work — it takes time to do it right",
+        ]
+      },
+    ]
+  },
+
+  // ── CLOSING / CONTACT ────────────────────────────────────
+  closing: {
+    sectionTag:   "Let\'s Talk",
+    headline:     "I\'d love to have a real conversation.",
+    headlineGold: "real conversation.",   // <- this phrase turns gold in the headline
+    body: "Not a pitch. Just a conversation about the work, the mission, and whether this is a good fit for both of us. I think it might be.",
+    ctaLabel: "Reach Out",
+    email:    "isaiah.jihad@gmail.com",
+    phone:    "323-774-2157",
+    location: "South LA, Los Angeles, CA",
+    linkedin: "linkedin.com/in/isaiahmuhammad",
+    quote: "\"I care deeply about leaving people and places better than I found them. Not as a professional value — as a personal one.\"",
+  }
+
+};
+// ============================================================
+//  ✋  STOP HERE — design code below, no need to touch it
+// ============================================================
+</script>
+
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --navy: #0F1F3D; --navy-mid: #1A3260; --gold: #C9943A; --gold-light: #E8B86D;
+    --cream: #F9F5EE; --warm-white: #FDFAF5; --dark: #111111; --mid: #5A5A5A;
+    --light: #B8B0A0; --border: rgba(201,148,58,0.25);
+    --serif: 'DM Serif Display', Georgia, serif; --sans: 'DM Sans', system-ui, sans-serif;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--sans); background: var(--warm-white); color: var(--dark); line-height: 1.6; }
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 1rem 3rem; background: rgba(253,250,245,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+  .nav-logo { font-family: var(--serif); font-size: 1.1rem; color: var(--navy); letter-spacing: -0.02em; }
+  .nav-links { display: flex; gap: 2rem; }
+  .nav-links a { font-size: 0.78rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mid); text-decoration: none; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--gold); }
+  section { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; }
+  .hero { background: var(--navy); padding: 8rem 3rem 4rem; position: relative; overflow: hidden; min-height: 100vh; }
+  .hero::before { content: ''; position: absolute; top: -40%; right: -10%; width: 700px; height: 700px; background: radial-gradient(circle, rgba(201,148,58,0.12) 0%, transparent 70%); border-radius: 50%; }
+  .hero::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 120px; background: linear-gradient(to bottom, transparent, var(--warm-white)); }
+  .hero-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; position: relative; z-index: 2; }
+  .hero-eyebrow { display: inline-flex; align-items: center; gap: 0.75rem; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem; }
+  .hero-eyebrow::before { content: ''; display: block; width: 32px; height: 1px; background: var(--gold); }
+  .hero h1 { font-family: var(--serif); font-size: clamp(3rem, 5vw, 4.5rem); color: white; line-height: 1.05; letter-spacing: -0.03em; margin-bottom: 1.5rem; }
+  .hero h1 em { color: var(--gold-light); font-style: normal; }
+  .hero-sub { font-size: 1.05rem; color: rgba(255,255,255,0.65); line-height: 1.75; margin-bottom: 2rem; }
+  .hero-cta-row { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.8rem 1.8rem; border-radius: 3px; font-family: var(--sans); font-size: 0.8rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; text-decoration: none; cursor: pointer; border: none; transition: all 0.2s; }
+  .btn-gold { background: var(--gold); color: white; } .btn-gold:hover { background: var(--gold-light); color: var(--navy); }
+  .btn-outline { background: transparent; color: white; border: 1px solid rgba(255,255,255,0.3); } .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+  .hero-right { display: flex; flex-direction: column; gap: 1.25rem; }
+  .stat-card { background: rgba(255,255,255,0.06); border: 1px solid rgba(201,148,58,0.2); border-radius: 6px; padding: 1.25rem 1.5rem; display: flex; align-items: flex-start; gap: 1rem; }
+  .stat-num { font-family: var(--serif); font-size: 2.2rem; color: var(--gold); line-height: 1; min-width: 60px; }
+  .stat-label { font-size: 0.85rem; color: rgba(255,255,255,0.6); line-height: 1.5; }
+  .stat-label strong { display: block; color: white; font-weight: 500; font-size: 0.95rem; margin-bottom: 0.2rem; }
+  .about { background: var(--cream); padding: 6rem 3rem; }
+  .about-inner { max-width: 1100px; margin: 0 auto; }
+  .section-tag { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.25rem; }
+  .section-tag::before { content: ''; width: 32px; height: 1px; background: var(--gold); }
+  .about-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 5rem; align-items: start; }
+  .about h2 { font-family: var(--serif); font-size: clamp(2.2rem, 3.5vw, 3rem); color: var(--navy); line-height: 1.15; letter-spacing: -0.02em; margin-bottom: 1.5rem; }
+  .about p { color: var(--mid); font-size: 1rem; line-height: 1.8; margin-bottom: 1.25rem; }
+  .pull-quote { border-left: 3px solid var(--gold); padding: 1rem 1.5rem; margin: 2rem 0; background: white; }
+  .pull-quote p { font-family: var(--serif); font-size: 1.2rem; color: var(--navy); line-height: 1.5; margin: 0; font-style: italic; }
+  .value-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .value-item { background: white; padding: 1.25rem; border-radius: 4px; border-top: 3px solid var(--gold); }
+  .value-num { font-family: var(--serif); font-size: 1.8rem; color: var(--gold); line-height: 1; margin-bottom: 0.4rem; }
+  .value-title { font-weight: 600; font-size: 0.9rem; color: var(--navy); margin-bottom: 0.35rem; }
+  .value-desc { font-size: 0.8rem; color: var(--mid); line-height: 1.5; }
+  .journey { background: var(--warm-white); padding: 6rem 3rem; }
+  .journey-inner { max-width: 1100px; margin: 0 auto; }
+  .journey h2 { font-family: var(--serif); font-size: clamp(2.2rem, 3.5vw, 3rem); color: var(--navy); letter-spacing: -0.02em; margin-bottom: 0.5rem; }
+  .journey-sub { color: var(--mid); font-size: 1rem; margin-bottom: 3.5rem; max-width: 540px; }
+  .timeline { position: relative; padding-left: 2.5rem; }
+  .timeline::before { content: ''; position: absolute; left: 0; top: 8px; bottom: 8px; width: 2px; background: var(--border); }
+  .tl-item { position: relative; margin-bottom: 2.5rem; }
+  .tl-dot { position: absolute; left: -2.5rem; width: 12px; height: 12px; background: var(--gold); border-radius: 50%; top: 6px; margin-left: -5px; border: 2px solid var(--warm-white); box-shadow: 0 0 0 2px var(--gold); }
+  .tl-year { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; color: var(--gold); text-transform: uppercase; margin-bottom: 0.25rem; }
+  .tl-role { font-weight: 600; font-size: 1.05rem; color: var(--navy); margin-bottom: 0.15rem; }
+  .tl-org { font-size: 0.88rem; color: var(--mid); margin-bottom: 0.4rem; font-style: italic; }
+  .tl-desc { font-size: 0.88rem; color: var(--mid); line-height: 1.6; }
+  .tl-badge { display: inline-flex; margin-top: 0.5rem; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.05em; padding: 0.2rem 0.6rem; background: rgba(201,148,58,0.12); color: var(--gold); border-radius: 2px; text-transform: uppercase; }
+  .skills { background: var(--navy); padding: 6rem 3rem; }
+  .skills-inner { max-width: 1100px; margin: 0 auto; }
+  .skills .section-tag { color: var(--gold-light); } .skills .section-tag::before { background: var(--gold-light); }
+  .skills h2 { font-family: var(--serif); font-size: clamp(2.2rem, 3.5vw, 3rem); color: white; letter-spacing: -0.02em; margin-bottom: 0.5rem; }
+  .skills-sub { color: rgba(255,255,255,0.5); font-size: 1rem; margin-bottom: 3.5rem; max-width: 540px; }
+  .skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  .skill-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(201,148,58,0.15); border-radius: 6px; padding: 1.75rem; transition: border-color 0.2s, background 0.2s; }
+  .skill-card:hover { border-color: rgba(201,148,58,0.4); background: rgba(255,255,255,0.07); }
+  .skill-icon { width: 40px; height: 40px; border-radius: 4px; background: rgba(201,148,58,0.15); display: flex; align-items: center; justify-content: center; margin-bottom: 1.1rem; }
+  .skill-icon svg { width: 20px; height: 20px; stroke: var(--gold); fill: none; stroke-width: 1.5; }
+  .skill-card h3 { font-weight: 600; font-size: 1rem; color: white; margin-bottom: 0.5rem; }
+  .skill-card p { font-size: 0.83rem; color: rgba(255,255,255,0.5); line-height: 1.65; }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 1rem; }
+  .skill-tag { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; padding: 0.2rem 0.6rem; background: rgba(201,148,58,0.1); color: var(--gold-light); border-radius: 2px; }
+  .fit { background: var(--cream); padding: 6rem 3rem; }
+  .fit-inner { max-width: 1100px; margin: 0 auto; }
+  .fit h2 { font-family: var(--serif); font-size: clamp(2.2rem, 3.5vw, 3rem); color: var(--navy); letter-spacing: -0.02em; margin-bottom: 0.5rem; }
+  .fit-sub { color: var(--mid); font-size: 1rem; margin-bottom: 3.5rem; max-width: 600px; }
+  .fit-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 3rem; }
+  .fit-card { background: white; border-radius: 6px; padding: 1.75rem; border-left: 4px solid var(--gold); }
+  .fit-card h3 { font-weight: 600; font-size: 1rem; color: var(--navy); margin-bottom: 0.6rem; }
+  .fit-card p { font-size: 0.88rem; color: var(--mid); line-height: 1.7; }
+  .vision-block { background: var(--navy); border-radius: 6px; padding: 3rem; display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
+  .vision-block h3 { font-family: var(--serif); font-size: 1.8rem; color: white; letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 1rem; }
+  .vision-block > div > p { color: rgba(255,255,255,0.6); font-size: 0.9rem; line-height: 1.8; }
+  .vision-points { display: flex; flex-direction: column; gap: 1rem; }
+  .vision-point { display: flex; align-items: flex-start; gap: 1rem; background: rgba(255,255,255,0.05); border-radius: 4px; padding: 1rem 1.25rem; border: 1px solid rgba(201,148,58,0.15); }
+  .vp-bullet { width: 24px; height: 24px; border-radius: 50%; background: rgba(201,148,58,0.2); display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
+  .vp-bullet span { font-size: 0.65rem; font-weight: 700; color: var(--gold); }
+  .vision-point p { font-size: 0.85rem; color: rgba(255,255,255,0.7); line-height: 1.6; margin: 0; }
+  .vision-point strong { color: white; display: block; font-size: 0.9rem; margin-bottom: 0.2rem; }
+  .personality { background: var(--warm-white); padding: 6rem 3rem; }
+  .personality-inner { max-width: 1100px; margin: 0 auto; }
+  .personality h2 { font-family: var(--serif); font-size: clamp(2.2rem, 3.5vw, 3rem); color: var(--navy); letter-spacing: -0.02em; margin-bottom: 0.5rem; }
+  .personality-sub { color: var(--mid); font-size: 1rem; margin-bottom: 3.5rem; max-width: 540px; }
+  .personality-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+  .trait-block { display: flex; flex-direction: column; gap: 0.75rem; }
+  .trait-item { display: flex; align-items: center; gap: 0.75rem; }
+  .trait-pill { padding: 0.35rem 1rem; border-radius: 40px; font-size: 0.8rem; font-weight: 600; background: rgba(201,148,58,0.1); color: var(--gold); border: 1px solid rgba(201,148,58,0.25); min-width: 130px; text-align: center; }
+  .trait-desc { font-size: 0.83rem; color: var(--mid); line-height: 1.5; }
+  .framework-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+  .framework-card { text-align: center; padding: 1.5rem 1rem; background: var(--cream); border-radius: 6px; border-top: 3px solid var(--gold); }
+  .fw-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--light); margin-bottom: 0.4rem; }
+  .fw-value { font-family: var(--serif); font-size: 1rem; color: var(--navy); line-height: 1.3; }
+  .swot { background: var(--cream); padding: 6rem 3rem; }
+  .swot-inner { max-width: 1100px; margin: 0 auto; }
+  .swot h2 { font-family: var(--serif); font-size: clamp(2.2rem, 3.5vw, 3rem); color: var(--navy); letter-spacing: -0.02em; margin-bottom: 0.5rem; }
+  .swot-sub { color: var(--mid); font-size: 1rem; margin-bottom: 3.5rem; max-width: 540px; }
+  .swot-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+  .swot-card { padding: 2rem; border-radius: 6px; }
+  .swot-card.s { background: var(--navy); } .swot-card.w, .swot-card.t { background: white; border: 1px solid var(--border); } .swot-card.o { background: rgba(201,148,58,0.08); border: 1px solid var(--border); }
+  .swot-letter { font-family: var(--serif); font-size: 3rem; line-height: 1; margin-bottom: 0.75rem; }
+  .swot-card.s .swot-letter { color: var(--gold); } .swot-card.w .swot-letter, .swot-card.t .swot-letter { color: var(--navy); opacity: 0.15; } .swot-card.o .swot-letter { color: var(--gold); opacity: 0.5; }
+  .swot-title { font-weight: 700; font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 1rem; }
+  .swot-card.s .swot-title { color: var(--gold); } .swot-card.w .swot-title, .swot-card.t .swot-title { color: var(--navy); } .swot-card.o .swot-title { color: var(--gold); }
+  .swot-list { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+  .swot-list li { font-size: 0.88rem; line-height: 1.55; padding-left: 1.1rem; position: relative; }
+  .swot-list li::before { content: '→'; position: absolute; left: 0; font-size: 0.75rem; }
+  .swot-card.s .swot-list li, .swot-card.s .swot-list li::before { color: rgba(255,255,255,0.75); }
+  .swot-card.w .swot-list li, .swot-card.t .swot-list li { color: var(--mid); } .swot-card.w .swot-list li::before, .swot-card.t .swot-list li::before { color: var(--light); }
+  .swot-card.o .swot-list li { color: var(--mid); } .swot-card.o .swot-list li::before { color: var(--gold); }
+  .closing { background: var(--navy); padding: 8rem 3rem; text-align: center; }
+  .closing-inner { max-width: 700px; margin: 0 auto; }
+  .closing .section-tag { justify-content: center; color: var(--gold-light); } .closing .section-tag::before { background: var(--gold-light); }
+  .closing h2 { font-family: var(--serif); font-size: clamp(2.5rem, 4vw, 3.5rem); color: white; letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 1.5rem; }
+  .closing h2 em { color: var(--gold-light); font-style: normal; }
+  .closing > .closing-inner > p { color: rgba(255,255,255,0.6); font-size: 1rem; line-height: 1.8; margin-bottom: 2.5rem; }
+  .contact-row { display: flex; align-items: center; justify-content: center; gap: 1.5rem; flex-wrap: wrap; margin-bottom: 2rem; }
+  .contact-item { font-size: 0.88rem; color: rgba(255,255,255,0.5); }
+  .contact-item a { color: var(--gold); text-decoration: none; } .contact-item a:hover { color: var(--gold-light); }
+  .closing-quote { margin-top: 3rem; padding-top: 2.5rem; border-top: 1px solid rgba(201,148,58,0.2); font-family: var(--serif); font-size: 1.15rem; color: rgba(255,255,255,0.4); font-style: italic; line-height: 1.7; }
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; } .nav-links { gap: 1rem; }
+    .hero-inner, .about-grid, .personality-grid, .skills-grid, .fit-grid, .swot-grid, .vision-block { grid-template-columns: 1fr; }
+    .framework-grid { grid-template-columns: 1fr 1fr; }
+    section, .hero { padding: 5rem 1.5rem 3rem; } .hero { padding-top: 7rem; }
+  }
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script>
+const ICONS = {
+  layers: `<svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>`,
+  users:  `<svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>`,
+  video:  `<svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>`,
+  chart:  `<svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>`,
+  mail:   `<svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>`,
+  people: `<svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="23" y1="11" x2="17" y2="11"/><line x1="20" y1="8" x2="20" y2="14"/></svg>`,
+};
+const SC = { S:'s', W:'w', O:'o', T:'t' };
+function gld(text, word) { return (!word||!text.includes(word)) ? text : text.replace(word,`<em>${word}</em>`); }
+function render() {
+  const C = CONTENT;
+  document.title = `${C.nav.name} — ${C.hero.eyebrow}`;
+  const hl = C.hero.headline.map(l => l===C.hero.headlineGold?`<em>${l}</em>`:l).join('<br>');
+  document.getElementById('app').innerHTML = `
+    <nav><div class="nav-logo">${C.nav.name}</div><div class="nav-links">${C.nav.links.map(l=>`<a href="${l.href}">${l.label}</a>`).join('')}</div></nav>
+    <section class="hero" id="hero"><div class="hero-inner"><div>
+      <div class="hero-eyebrow">${C.hero.eyebrow}</div>
+      <h1>${hl}</h1>
+      <p class="hero-sub">${C.hero.sub}</p>
+      <div class="hero-cta-row"><a href="${C.hero.cta1Href}" class="btn btn-gold">${C.hero.cta1Label}</a><a href="${C.hero.cta2Href}" class="btn btn-outline">${C.hero.cta2Label}</a></div>
+    </div><div class="hero-right">${C.hero.stats.map(s=>`<div class="stat-card"><div class="stat-num">${s.num}</div><div class="stat-label"><strong>${s.title}</strong>${s.sub}</div></div>`).join('')}</div></div></section>
+    <section class="about" id="about"><div class="about-inner">
+      <div class="section-tag">${C.about.sectionTag}</div>
+      <div class="about-grid"><div>
+        <h2>${C.about.headline}</h2>
+        ${C.about.body.map(p=>`<p>${p}</p>`).join('')}
+        <div class="pull-quote"><p>${C.about.pullQuote}</p></div>
+      </div><div class="value-grid">${C.about.values.map(v=>`<div class="value-item"><div class="value-num">${v.num}</div><div class="value-title">${v.title}</div><div class="value-desc">${v.desc}</div></div>`).join('')}</div></div>
+    </div></section>
+    <section class="journey" id="journey"><div class="journey-inner">
+      <div class="section-tag">${C.journey.sectionTag}</div>
+      <h2>${C.journey.headline}</h2><p class="journey-sub">${C.journey.sub}</p>
+      <div class="timeline">${C.journey.stops.map(s=>`<div class="tl-item"><div class="tl-dot"></div><div class="tl-year">${s.year}</div><div class="tl-role">${s.role}</div><div class="tl-org">${s.org}</div><div class="tl-desc">${s.desc}</div><span class="tl-badge">${s.badge}</span></div>`).join('')}</div>
+    </div></section>
+    <section class="skills" id="skills"><div class="skills-inner">
+      <div class="section-tag">${C.skills.sectionTag}</div>
+      <h2>${C.skills.headline}</h2><p class="skills-sub">${C.skills.sub}</p>
+      <div class="skills-grid">${C.skills.cards.map(c=>`<div class="skill-card"><div class="skill-icon">${ICONS[c.icon]||ICONS.layers}</div><h3>${c.title}</h3><p>${c.body}</p><div class="skill-tags">${c.tags.map(t=>`<span class="skill-tag">${t}</span>`).join('')}</div></div>`).join('')}</div>
+    </div></section>
+    <section class="fit" id="fit"><div class="fit-inner">
+      <div class="section-tag">${C.fit.sectionTag}</div>
+      <h2>${C.fit.headline}</h2><p class="fit-sub">${C.fit.sub}</p>
+      <div class="fit-grid">${C.fit.cards.map(c=>`<div class="fit-card"><h3>${c.title}</h3><p>${c.body}</p></div>`).join('')}</div>
+      <div class="vision-block"><div><h3>${C.fit.vision.headline}</h3><p>${C.fit.vision.body}</p></div>
+      <div class="vision-points">${C.fit.vision.points.map(p=>`<div class="vision-point"><div class="vp-bullet"><span>${p.num}</span></div><p><strong>${p.title}</strong>${p.body}</p></div>`).join('')}</div></div>
+    </div></section>
+    <section class="personality" id="personality"><div class="personality-inner">
+      <div class="section-tag">${C.personality.sectionTag}</div>
+      <h2>${C.personality.headline}</h2><p class="personality-sub">${C.personality.sub}</p>
+      <div class="personality-grid">
+        <div class="trait-block">${C.personality.traits.map(t=>`<div class="trait-item"><div class="trait-pill">${t.label}</div><div class="trait-desc">${t.desc}</div></div>`).join('')}</div>
+        <div><div class="framework-grid">${C.personality.frameworks.map(f=>`<div class="framework-card"><div class="fw-label">${f.label}</div><div class="fw-value">${f.value}</div></div>`).join('')}</div>
+        <div style="margin-top:1.5rem;padding:1.5rem;background:var(--cream);border-radius:6px;"><div style="font-size:0.75rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--light);margin-bottom:0.75rem;">Beyond the work</div><p style="font-size:0.88rem;color:var(--mid);line-height:1.7;">${C.personality.beyondWork}</p></div></div>
+      </div>
+    </div></section>
+    <section class="swot" id="swot"><div class="swot-inner">
+      <div class="section-tag">${C.swot.sectionTag}</div>
+      <h2>${C.swot.headline}</h2><p class="swot-sub">${C.swot.sub}</p>
+      <div class="swot-grid">${C.swot.quadrants.map(q=>`<div class="swot-card ${SC[q.letter]}"><div class="swot-letter">${q.letter}</div><div class="swot-title">${q.title}</div><ul class="swot-list">${q.items.map(i=>`<li>${i}</li>`).join('')}</ul></div>`).join('')}</div>
+    </div></section>
+    <section class="closing" id="contact"><div class="closing-inner">
+      <div class="section-tag">${C.closing.sectionTag}</div>
+      <h2>${gld(C.closing.headline,C.closing.headlineGold)}</h2>
+      <p>${C.closing.body}</p>
+      <a href="mailto:${C.closing.email}" class="btn btn-gold" style="margin:0 auto 2.5rem;display:inline-flex;">${C.closing.ctaLabel}</a>
+      <div class="contact-row">
+        <div class="contact-item"><a href="mailto:${C.closing.email}">${C.closing.email}</a></div>
+        <div class="contact-item" style="color:rgba(255,255,255,0.2);">·</div>
+        <div class="contact-item">${C.closing.phone}</div>
+        <div class="contact-item" style="color:rgba(255,255,255,0.2);">·</div>
+        <div class="contact-item">${C.closing.location}</div>
+        <div class="contact-item" style="color:rgba(255,255,255,0.2);">·</div>
+        <div class="contact-item"><a href="https://${C.closing.linkedin}">${C.closing.linkedin}</a></div>
+      </div>
+      <div class="closing-quote">${C.closing.quote}</div>
+    </div></section>`;
+}
+render();
+</script>
+</body>
+</html>
