@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Isaiah Muhammad — Director of Marketing & Brand Strategy</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script>
+// ============================================================
+//  ✏️  YOUR CONTENT — EDIT ANYTHING IN HERE
+// ============================================================
+
+const CONTENT = {
+
+  // ── NAV BAR ──────────────────────────────────────────────
+  nav: {
+    name: "Isaiah Muhammad",
+    links: [
+      { label: "About",    href: "#about" },
+      { label: "Journey",  href: "#journey" },
+      { label: "Portfolio", href: "#portfolio" },
+      { label: "Skills",   href: "#skills" },
+      { label: "Homeboy",  href: "#fit" },
+      { label: "Contact",  href: "#contact" },
+    ]
+  },
+
+  // ── PHOTO ───────────────────────────────────────────────
+  photoUrl: "data:image/jpeg;base64,...", // (Your existing base64 data)
+
+  // ── ABOUT ───────────────────────────────────────────────
+  about: {
+    sectionTag: "Identity",
+    headline: "An LA native, husband, and new dad, I make electronic music and play the handpan.",
+    body: "I’m currently building UBLA—a community organization focused on health, wealth, and political power for Black men in Los Angeles. When I’m not working, I’m traveling, exploring comparative theology, or hiking in nature with my family. South LA isn't just my home—it’s the heart of everything I do."
+  },
+
+  // ── PORTFOLIO ───────────────────────────────────────────
+  // ✏️  EASY UPDATE: Add/change items here to update your site via GitHub
+  portfolio: {
+    sectionTag: "Creative",
+    headline: "Selected Work",
+    items: [
+      {
+        title: "Electronic Music Production",
+        description: "UK garage and future house compositions.",
+        videoUrl: "https://www.w3schools.com/html/mov_bbb.mp4", // Replace with your video file link
+        type: "video"
+      },
+      {
+        title: "UBLA Community Building",
+        description: "Strategic leadership for Black men's empowerment in LA.",
+        imageUrl: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4", // Replace with your image link
+        type: "image"
+      },
+      {
+        title: "Handpan Artistry",
+        description: "Exploring melodic percussion and soundscapes.",
+        imageUrl: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4", // Replace with your image link
+        type: "image"
+      }
+    ]
+  },
+
+  // ── JOURNEY ──────────────────────────────────────────────
+  journey: {
+    sectionTag: "Career",
+    headline: "The Path So Far",
+    roles: [
+      { year: "2024 — Pres.", company: "UBLA", title: "Founder / Executive Director", desc: "Leading a community organization focused on health, wealth, and political power for Black men in Los Angeles." },
+      { year: "2023 — 2024", company: "Homeboy Industries", title: "Director of Marketing & Brand Strategy", desc: "Spearheaded brand evolution and strategic marketing for the world's largest gang intervention and re-entry program." },
+      { year: "2018 — 2023", company: "Social Justice Learning Institute", title: "Director of Marketing & Communications", desc: "Managed organizational voice and outreach for education and equity initiatives." }
+    ]
+  },
+
+  // ── SKILLS ───────────────────────────────────────────────
+  skills: {
+    sectionTag: "Expertise",
+    headline: "Strategic Mastery",
+    categories: [
+      { title: "Brand Strategy", items: ["Identity Development", "Market Positioning", "Cultural Relevance"] },
+      { title: "Growth Marketing", items: ["Performance Ads", "Retention Systems", "Funnel Optimization"] },
+      { title: "Creativity", items: ["Content Direction", "Music Production", "Visual Storytelling"] }
+    ]
+  },
+
+  // ── SWOT / ANALYSIS ──────────────────────────────────────
+  swot: {
+    sectionTag: "Analysis",
+    headline: "Self-Reflection",
+    sub: "A look at my leadership evolution",
+    quadrants: [
+      { letter: "S", title: "Strengths", items: ["High-speed execution", "Visionary strategy", "Cultural fluency"] },
+      { letter: "W", title: "Areas for Growth", items: [
+          "Pacing: I naturally go all-in; I’m actively working on pacing myself for the long term.",
+          "Balanced Impact: Being highly results-oriented, I am learning to prioritize intangible growth as much as measurable outcomes.",
+          "Empowered Leadership: I am focused on developing my team’s independence so they lead effectively while seeking me for counsel."
+        ] 
+      },
+      { letter: "O", title: "Opportunities", items: ["Scaling UBLA's impact", "New creative collaborations"] },
+      { letter: "T", title: "Challenges", items: ["Market saturation", "Resource allocation"] }
+    ]
+  },
+
+  fit: {
+    sectionTag: "Why Homeboy?",
+    headline: "Personal Connection",
+    body: "Working with Homeboy Industries allowed me to fuse professional brand strategy with deeply personal community impact. It reinforced my belief that brand is not just what you say, but the transformation you facilitate in people's lives."
+  },
+
+  closing: {
+    sectionTag: "Next Steps",
+    headline: "Let\\'s Build Something Impactful",
+    headlineGold: "Impactful",
+    body: "Whether you want to discuss community strategy, music, or a new project, I\\'m always open to connecting.",
+    ctaLabel: "Get In Touch",
+    email: "isaiah@example.com",
+    phone: "323.555.0199",
+    location: "South LA"
+  }
+};
+
+const gld = (s, g) => s.replace(g, `<span class="text-gold">${g}</span>`);
+const SC = { S: "swot-s", W: "swot-w", O: "swot-o", T: "swot-t" };
+
+document.addEventListener("DOMContentLoaded", () => {
+  const C = CONTENT;
+  const main = document.getElementById("main-content");
+
+  main.innerHTML = `
+    <nav class="nav">
+      <div class="container nav-inner">
+        <div class="nav-logo">${C.nav.name}</div>
+        <div class="nav-links">
+          ${C.nav.links.map(l=>`<a href="${l.href}">${l.label}</a>`).join('')}
+        </div>
+      </div>
+    </nav>
+
+    <header class="hero">
+      <div class="container hero-grid">
+        <div class="hero-text">
+          <div class="section-tag" style="margin-bottom:1rem;">Director of Marketing</div>
+          <h1>${C.nav.name}</h1>
+          <p class="hero-sub">${C.about.headline}</p>
+          <a href="#contact" class="btn btn-gold">Collaborate</a>
+        </div>
+        <div class="hero-visual">
+          <div class="hero-img-frame">
+            <img src="${C.photoUrl}" alt="Isaiah Muhammad">
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <section class="about" id="about">
+      <div class="container">
+        <div class="section-tag">${C.about.sectionTag}</div>
+        <h2>${C.about.headline}</h2>
+        <p class="about-body">${C.about.body}</p>
+      </div>
+    </section>
+
+    <section class="journey" id="journey">
+      <div class="container">
+        <div class="section-tag">${C.journey.sectionTag}</div>
+        <h2>${C.journey.headline}</h2>
+        <div class="journey-list">
+          ${C.journey.roles.map(r=>`
+            <div class="journey-item">
+              <div class="j-year">${r.year}</div>
+              <div class="j-content">
+                <h3>${r.title} — ${r.company}</h3>
+                <p>${r.desc}</p>
+              </div>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+    </section>
+
+    <section class="portfolio" id="portfolio">
+      <div class="container">
+        <div class="section-tag">${C.portfolio.sectionTag}</div>
+        <h2>${C.portfolio.headline}</h2>
+        <div class="portfolio-grid">
+          ${C.portfolio.items.map(item => `
+            <div class="portfolio-card">
+              <div class="portfolio-media">
+                ${item.type === 'video' 
+                  ? `<video src="${item.videoUrl}" controls></video>`
+                  : `<img src="${item.imageUrl}" alt="${item.title}">`
+                }
+              </div>
+              <div class="portfolio-info">
+                <h3>${item.title}</h3>
+                <p>${item.description}</p>
+              </div>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+    </section>
+
+    <section class="skills" id="skills">
+      <div class="container">
+        <div class="section-tag">${C.skills.sectionTag}</div>
+        <h2>${C.skills.headline}</h2>
+        <div class="skills-grid">
+          ${C.skills.categories.map(cat=>`
+            <div class="skills-cat">
+              <h3>${cat.title}</h3>
+              <ul>${cat.items.map(i=>`<li>${i}</li>`).join('')}</ul>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+    </section>
+
+    <section class="swot">
+      <div class="container">
+        <div class="section-tag">${C.swot.sectionTag}</div>
+        <h2>${C.swot.headline}</h2>
+        <p class="swot-sub">${C.swot.sub}</p>
+        <div class="swot-grid">
+          ${C.swot.quadrants.map(q=>`
+            <div class="swot-card ${SC[q.letter]}">
+              <div class="swot-letter">${q.letter}</div>
+              <div class="swot-title">${q.title}</div>
+              <ul class="swot-list">${q.items.map(i=>`<li>${i}</li>`).join('')}</ul>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+    </section>
+
+    <section class="about" id="fit" style="background:#111;">
+      <div class="container">
+        <div class="section-tag">${C.fit.sectionTag}</div>
+        <h2>Impact at Homeboy</h2>
+        <p class="about-body">${C.fit.body}</p>
+      </div>
+    </section>
+
+    <section class="closing" id="contact">
+      <div class="closing-inner">
+        <div class="section-tag">${C.closing.sectionTag}</div>
+        <h2>${gld(C.closing.headline, C.closing.headlineGold)}</h2>
+        <p>${C.closing.body}</p>
+        <a href="mailto:${C.closing.email}" class="btn btn-gold" style="margin:0 auto 2.5rem;display:inline-flex;">${C.closing.ctaLabel}</a>
+        <div class="contact-row">
+          <div class="contact-item"><a href="mailto:${C.closing.email}">${C.closing.email}</a></div>
+          <div class="contact-item" style="color:rgba(255,255,255,0.2);">·</div>
+          <div class="contact-item">${C.closing.phone}</div>
+          <div class="contact-item" style="color:rgba(255,255,255,0.2);">·</div>
+          <div class="contact-item">${C.closing.location}</div>
+        </div>
+      </div>
+    </section>
+  `;
+});
+</script>
+
+<style>
+:root { --gold: #c5a059; --bg: #000; --text: #fff; }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; line-height: 1.5; -webkit-font-smoothing: antialiased; scroll-behavior: smooth; }
+.container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+.section-tag { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.2rem; color: var(--gold); font-weight: 600; margin-bottom: 2rem; display: block; }
+h1, h2, h3 { font-family: 'DM Serif Display', serif; font-weight: 400; }
+h2 { font-size: clamp(2rem, 5vw, 3.5rem); line-height: 1.1; margin-bottom: 2rem; }
+.text-gold { color: var(--gold); }
+.btn { display: inline-block; padding: 1rem 2.5rem; border-radius: 100px; text-decoration: none; font-weight: 500; transition: all 0.3s ease; border: 1px solid transparent; cursor: pointer; }
+.btn-gold { background: var(--gold); color: #000; }
+.btn-gold:hover { background: transparent; border-color: var(--gold); color: var(--gold); }
+
+.nav { padding: 2rem 0; position: absolute; width: 100%; top: 0; z-index: 100; }
+.nav-inner { display: flex; justify-content: space-between; align-items: center; }
+.nav-logo { font-family: 'DM Serif Display', serif; font-size: 1.5rem; }
+.nav-links { display: flex; gap: 2.5rem; }
+.nav-links a { text-decoration: none; color: #fff; font-size: 0.85rem; opacity: 0.6; transition: 0.3s; }
+.nav-links a:hover { opacity: 1; color: var(--gold); }
+
+.hero { padding: 180px 0 100px; min-height: 90vh; display: flex; align-items: center; }
+.hero-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 4rem; align-items: center; }
+.hero-sub { font-size: 1.25rem; opacity: 0.7; margin-bottom: 3rem; max-width: 500px; }
+.hero-img-frame { position: relative; border-radius: 20px; overflow: hidden; aspect-ratio: 4/5; border: 1px solid rgba(255,255,255,0.1); }
+.hero-img-frame img { width: 100%; height: 100%; object-fit: cover; }
+
+.about { padding: 120px 0; border-top: 1px solid #222; }
+.about-body { font-size: 1.5rem; line-height: 1.6; opacity: 0.8; max-width: 800px; }
+
+.journey { padding: 120px 0; background: #080808; }
+.journey-item { display: grid; grid-template-columns: 200px 1fr; padding: 2.5rem 0; border-top: 1px solid #222; }
+.j-year { font-size: 0.9rem; opacity: 0.4; padding-top: 0.5rem; }
+.j-content h3 { font-size: 1.75rem; margin-bottom: 1rem; }
+.j-content p { opacity: 0.6; max-width: 600px; }
+
+.portfolio { padding: 120px 0; background: #000; }
+.portfolio-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+.portfolio-card { background: #111; border-radius: 12px; overflow: hidden; border: 1px solid #222; }
+.portfolio-media { aspect-ratio: 16/9; background: #000; }
+.portfolio-media img, .portfolio-media video { width: 100%; height: 100%; object-fit: cover; }
+.portfolio-info { padding: 1.5rem; }
+.portfolio-info h3 { font-size: 1.4rem; margin-bottom: 0.5rem; }
+.portfolio-info p { font-size: 0.9rem; opacity: 0.6; }
+
+.skills { padding: 120px 0; }
+.skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4rem; margin-top: 2rem; }
+.skills-cat h3 { font-size: 1.25rem; margin-bottom: 1.5rem; color: var(--gold); }
+.skills-cat ul { list-style: none; }
+.skills-cat li { font-size: 1.1rem; margin-bottom: 0.8rem; opacity: 0.7; position: relative; padding-left: 1.5rem; }
+.skills-cat li::before { content: "→"; position: absolute; left: 0; color: var(--gold); opacity: 0.5; }
+
+.swot { padding: 120px 0; background: #080808; border-top: 1px solid #222; }
+.swot-sub { font-size: 1.1rem; opacity: 0.5; margin: -1rem 0 4rem; }
+.swot-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+.swot-card { padding: 3rem; border-radius: 20px; position: relative; overflow: hidden; border: 1px solid rgba(255,255,255,0.05); }
+.swot-letter { position: absolute; top: -1rem; right: -1rem; font-size: 8rem; font-family: 'DM Serif Display', serif; opacity: 0.05; }
+.swot-title { font-size: 1.5rem; margin-bottom: 1.5rem; }
+.swot-list { list-style: none; }
+.swot-list li { margin-bottom: 1rem; opacity: 0.7; font-size: 0.95rem; line-height: 1.4; }
+.swot-s { background: rgba(197, 160, 89, 0.05); }
+.swot-w { background: rgba(255, 255, 255, 0.02); }
+
+.closing { padding: 150px 0; text-align: center; background: #000; border-top: 1px solid #222; }
+.closing-inner { max-width: 700px; margin: 0 auto; padding: 0 2rem; }
+.closing p { font-size: 1.25rem; opacity: 0.6; margin-bottom: 3rem; }
+.contact-row { display: flex; justify-content: center; gap: 2rem; margin-top: 4rem; }
+.contact-item { font-size: 0.9rem; opacity: 0.5; }
+.contact-item a { color: #fff; text-decoration: none; }
+
+@media (max-width: 768px) {
+  .hero-grid, .journey-item, .skills-grid, .swot-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .nav-links { display: none; }
+  .hero { padding-top: 120px; }
+  .j-year { padding-top: 0; margin-bottom: 0.5rem; }
+}
+</style>
+</head>
+<body>
+  <div id="main-content"></div>
+</body>
+</html>
