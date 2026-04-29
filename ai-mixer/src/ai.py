@@ -6,7 +6,7 @@ from dataclasses import asdict
 
 from anthropic import Anthropic
 
-from .analyzer import TrackFeatures
+from analyzer import TrackFeatures
 
 MODEL = "claude-opus-4-7"
 
