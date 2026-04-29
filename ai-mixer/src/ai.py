@@ -10,18 +10,41 @@ from analyzer import TrackFeatures
 
 MODEL = "claude-opus-4-7"
 
-SYSTEM_PROMPT = """You are an expert mixing engineer. Given measured features of a
-reference track and a user's current mix, suggest concrete adjustments
-(track volumes in dB, pan positions, EQ moves, compression). Respond as JSON
-with shape: {"suggestions": [{"target": str, "action": str, "value": number,
-"reason": str}]}."""
+SYSTEM_PROMPT = """You are an expert mixing engineer. You are given:
+- measured features of a REFERENCE track the user wants to match
+- measured features of their CURRENT mix
+- the list of track names in their Ableton Live session
+
+Suggest concrete, conservative volume and pan adjustments that move the
+current mix toward the reference. Only output adjustments for tracks that
+exist in the provided track list. Use exact track names.
+
+Volume changes must be small (between -3.0 and +3.0 dB).
+Pan values are absolute targets between -1.0 (hard left) and 1.0 (hard right).
+
+Respond as JSON only, no prose, with this exact shape:
+{
+  "suggestions": [
+    {"track": "<name>", "param": "volume", "delta_db": <number>, "reason": "<short>"},
+    {"track": "<name>", "param": "pan", "value": <number>, "reason": "<short>"}
+  ]
+}"""
 
 
-def suggest_adjustments(reference: TrackFeatures, current: TrackFeatures) -> dict:
+def suggest_adjustments(
+    reference: TrackFeatures,
+    current: TrackFeatures,
+    track_names: list[str],
+) -> dict:
     client = Anthropic(api_key=os.environ["ANTHROPIC_API_KEY"])
 
     user_msg = json.dumps(
-        {"reference": asdict(reference), "current": asdict(current)}, indent=2
+        {
+            "reference": asdict(reference),
+            "current": asdict(current),
+            "tracks": track_names,
+        },
+        indent=2,
     )
 
     response = client.messages.create(
@@ -31,5 +54,7 @@ def suggest_adjustments(reference: TrackFeatures, current: TrackFeatures) -> dic
         messages=[{"role": "user", "content": user_msg}],
     )
 
-    text = response.content[0].text
+    text = response.content[0].text.strip()
+    if text.startswith("```"):
+        text = text.split("\n", 1)[1].rsplit("```", 1)[0]
     return json.loads(text)

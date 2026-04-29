@@ -5,27 +5,59 @@ from pathlib import Path
 
 import streamlit as st
 
-from analyzer import analyze
-from ableton_osc import AbletonClient
+from ableton_osc import AbletonClient, db_to_fader_delta
 from ai import suggest_adjustments
+from analyzer import analyze
 
 
 st.set_page_config(page_title="AI Mixing Assistant", layout="wide")
 st.title("AI Mixing Assistant")
 
-st.sidebar.header("Ableton connection")
+
+# ---------- Sidebar: Ableton connection ----------
+
+st.sidebar.header("Ableton")
 host = st.sidebar.text_input("Host", "127.0.0.1")
-port = st.sidebar.number_input("Send port", value=11000, step=1)
+send_port = st.sidebar.number_input("Send port", value=11000, step=1)
+recv_port = st.sidebar.number_input("Receive port", value=11001, step=1)
+
+if st.sidebar.button("Connect / refresh tracks"):
+    if "client" in st.session_state:
+        st.session_state.client.close()
+    try:
+        client = AbletonClient(host, int(send_port), int(recv_port))
+        names = client.get_track_names()
+        st.session_state.client = client
+        st.session_state.track_names = names
+        st.sidebar.success(f"Connected. {len(names)} tracks.")
+    except Exception as exc:
+        st.sidebar.error(f"Connection failed: {exc}")
+
+if "track_names" in st.session_state:
+    st.sidebar.write("**Tracks in session:**")
+    for i, name in enumerate(st.session_state.track_names):
+        st.sidebar.write(f"{i}. {name}")
+
+
+# ---------- Main: upload + analyze ----------
 
 col_ref, col_cur = st.columns(2)
 
 with col_ref:
     st.subheader("Reference track")
-    ref_file = st.file_uploader("Upload reference audio", type=["wav", "mp3", "aif", "aiff", "flac"], key="ref")
+    ref_file = st.file_uploader(
+        "Upload reference audio",
+        type=["wav", "mp3", "aif", "aiff", "flac"],
+        key="ref",
+    )
 
 with col_cur:
     st.subheader("Current mix")
-    cur_file = st.file_uploader("Upload current mix bounce", type=["wav", "mp3", "aif", "aiff", "flac"], key="cur")
+    cur_file = st.file_uploader(
+        "Upload current mix bounce",
+        type=["wav", "mp3", "aif", "aiff", "flac"],
+        key="cur",
+    )
 
 
 def _save_upload(uploaded, name: str) -> Path:
@@ -35,7 +67,11 @@ def _save_upload(uploaded, name: str) -> Path:
     return target
 
 
-if ref_file and cur_file and st.button("Analyze and suggest"):
+can_analyze = ref_file and cur_file and "track_names" in st.session_state
+if not can_analyze:
+    st.info("Connect to Ableton (sidebar) and upload both audio files to begin.")
+
+if can_analyze and st.button("Analyze and suggest"):
     ref_path = _save_upload(ref_file, f"ref_{ref_file.name}")
     cur_path = _save_upload(cur_file, f"cur_{cur_file.name}")
 
@@ -43,14 +79,89 @@ if ref_file and cur_file and st.button("Analyze and suggest"):
         ref_features = analyze(str(ref_path))
         cur_features = analyze(str(cur_path))
 
-    st.json({"reference": asdict(ref_features), "current": asdict(cur_features)})
+    st.session_state.features = {
+        "reference": asdict(ref_features),
+        "current": asdict(cur_features),
+    }
 
     with st.spinner("Asking Claude for suggestions..."):
-        result = suggest_adjustments(ref_features, cur_features)
+        result = suggest_adjustments(
+            ref_features, cur_features, st.session_state.track_names
+        )
 
+    st.session_state.suggestions = result.get("suggestions", [])
+
+
+# ---------- Results: features + suggestion checkboxes ----------
+
+if "features" in st.session_state:
+    with st.expander("Audio features (reference vs current)"):
+        st.json(st.session_state.features)
+
+
+def _name_to_index(name: str) -> int | None:
+    for i, n in enumerate(st.session_state.track_names):
+        if n.strip().lower() == name.strip().lower():
+            return i
+    return None
+
+
+if st.session_state.get("suggestions"):
     st.subheader("Suggestions")
-    st.json(result)
 
-    if st.button("Apply to Ableton"):
-        AbletonClient(host, int(port))
-        st.info("Wire up suggestion -> OSC mapping in src/ableton_osc.py to apply.")
+    selections: list[bool] = []
+    for i, s in enumerate(st.session_state.suggestions):
+        track = s.get("track", "?")
+        param = s.get("param", "?")
+        if param == "volume":
+            label = f"**{track}** volume {s.get('delta_db', 0):+.1f} dB — {s.get('reason', '')}"
+        else:
+            label = f"**{track}** pan to {s.get('value', 0):+.2f} — {s.get('reason', '')}"
+        selections.append(st.checkbox(label, value=True, key=f"sug_{i}"))
+
+    col_a, col_b, col_c = st.columns(3)
+
+    with col_a:
+        if st.button("Snapshot current mixer state"):
+            client = st.session_state.client
+            snap = {}
+            for i in range(len(st.session_state.track_names)):
+                snap[i] = {
+                    "volume": client.get_track_volume(i),
+                    "pan": client.get_track_panning(i),
+                }
+            st.session_state.snapshot = snap
+            st.success("Snapshot saved.")
+
+    with col_b:
+        if st.button("Apply selected"):
+            client = st.session_state.client
+            applied, skipped = 0, []
+            for s, on in zip(st.session_state.suggestions, selections):
+                if not on:
+                    continue
+                idx = _name_to_index(s.get("track", ""))
+                if idx is None:
+                    skipped.append(f"{s.get('track')} (no matching track)")
+                    continue
+                if s.get("param") == "volume":
+                    cur = client.get_track_volume(idx)
+                    new = max(0.0, min(1.0, cur + db_to_fader_delta(float(s.get("delta_db", 0)))))
+                    client.set_track_volume(idx, new)
+                    applied += 1
+                elif s.get("param") == "pan":
+                    new = max(-1.0, min(1.0, float(s.get("value", 0))))
+                    client.set_track_panning(idx, new)
+                    applied += 1
+            st.success(f"Applied {applied} change(s).")
+            if skipped:
+                st.warning("Skipped: " + ", ".join(skipped))
+
+    with col_c:
+        snap = st.session_state.get("snapshot")
+        if st.button("Undo (restore snapshot)", disabled=snap is None):
+            client = st.session_state.client
+            for idx, vals in snap.items():
+                client.set_track_volume(idx, vals["volume"])
+                client.set_track_panning(idx, vals["pan"])
+            st.success("Restored.")
