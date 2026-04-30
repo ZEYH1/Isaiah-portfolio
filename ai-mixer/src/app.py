@@ -8,6 +8,7 @@ import streamlit as st
 from ableton_osc import AbletonClient, db_to_fader_delta
 from ai import suggest_adjustments
 from analyzer import analyze
+from knowledge import list_guides
 
 
 st.set_page_config(page_title="AI Mixing Assistant", layout="wide")
@@ -37,6 +38,21 @@ if "track_names" in st.session_state:
     st.sidebar.write("**Tracks in session:**")
     for i, name in enumerate(st.session_state.track_names):
         st.sidebar.write(f"{i}. {name}")
+
+st.sidebar.header("Style")
+genre = st.sidebar.selectbox(
+    "Target genre",
+    ["Auto", "UK Garage", "House", "Trap"],
+    help="Tells Claude which conventions from the loaded guides apply.",
+)
+
+guides = list_guides()
+if guides:
+    with st.sidebar.expander(f"Loaded mixing guides ({len(guides)})"):
+        for g in guides:
+            st.write(f"- {g}")
+else:
+    st.sidebar.info("No guides loaded. Drop .md files into ai-mixer/knowledge/.")
 
 
 # ---------- Main: upload + analyze ----------
@@ -86,7 +102,10 @@ if can_analyze and st.button("Analyze and suggest"):
 
     with st.spinner("Asking Claude for suggestions..."):
         result = suggest_adjustments(
-            ref_features, cur_features, st.session_state.track_names
+            ref_features,
+            cur_features,
+            st.session_state.track_names,
+            genre=genre,
         )
 
     st.session_state.suggestions = result.get("suggestions", [])

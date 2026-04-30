@@ -12,10 +12,26 @@ ai-mixer/
 │   ├── analyzer.py       # librosa-based feature extraction
 │   ├── ableton_osc.py    # python-osc client for AbletonOSC
 │   ├── ai.py             # Claude suggestion engine
+│   ├── knowledge.py      # loads guides from knowledge/
 │   └── app.py            # Streamlit UI
+├── knowledge/            # mixing guides Claude reads on every call
+│   └── 00-3d-mixing-guide.md
 ├── references/           # drop reference tracks here (gitignored)
 └── tests/
 ```
+
+## Adding new mixing guides
+
+Drop a `.md` file into `ai-mixer/knowledge/`. Files load in filename order
+(prefix with `00-`, `01-`, etc. for priority). They're sent to Claude as a
+cached system block, so the second call onward only pays ~10% the cost of
+the guide content. Restart Streamlit to pick up new files.
+
+Style tips:
+- Markdown headings, bullet lists, and tables work well.
+- Be specific: "high-pass everything but kick/bass" beats "EQ thoughtfully."
+- Genre-specific advice should be tagged with the genre name so the
+  Genre selector in the sidebar can route Claude to it.
 
 ---
 
