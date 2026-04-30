@@ -99,6 +99,14 @@ if "features" in st.session_state:
         st.json(st.session_state.features)
 
 
+# --- Safety guardrails: never trust the LLM to respect numeric limits ---
+MAX_VOLUME_DELTA_DB = 2.0     # cap per-suggestion volume move
+FADER_UNITY = 0.85            # AbletonOSC linear value for 0 dB
+FADER_CEILING = FADER_UNITY   # never push a fader past unity gain
+PAN_CENTER_TRACKS = {"kick", "bass", "sub", "lead vocal", "vocal"}
+PAN_CENTER_LIMIT = 0.1
+
+
 def _name_to_index(name: str) -> int | None:
     for i, n in enumerate(st.session_state.track_names):
         if n.strip().lower() == name.strip().lower():
@@ -106,11 +114,45 @@ def _name_to_index(name: str) -> int | None:
     return None
 
 
+def _sanitize(suggestion: dict) -> tuple[dict, str | None]:
+    """Clamp a Claude suggestion to safe ranges. Returns (clean, note)."""
+    s = dict(suggestion)
+    note = None
+    if s.get("param") == "volume":
+        delta = float(s.get("delta_db", 0))
+        clamped = max(-MAX_VOLUME_DELTA_DB, min(MAX_VOLUME_DELTA_DB, delta))
+        if clamped != delta:
+            note = f"clamped {delta:+.1f} -> {clamped:+.1f} dB"
+        s["delta_db"] = clamped
+    elif s.get("param") == "pan":
+        v = float(s.get("value", 0))
+        track_lower = str(s.get("track", "")).strip().lower()
+        if track_lower in PAN_CENTER_TRACKS:
+            limited = max(-PAN_CENTER_LIMIT, min(PAN_CENTER_LIMIT, v))
+            if limited != v:
+                note = f"low/center element pan {v:+.2f} -> {limited:+.2f}"
+            v = limited
+        v = max(-1.0, min(1.0, v))
+        s["value"] = v
+    return s, note
+
+
 if st.session_state.get("suggestions"):
     st.subheader("Suggestions")
 
+    sanitized: list[dict] = []
+    notes: list[str] = []
+    for raw in st.session_state.suggestions:
+        clean, note = _sanitize(raw)
+        sanitized.append(clean)
+        if note:
+            notes.append(f"{clean.get('track', '?')}: {note}")
+
+    if notes:
+        st.warning("Guardrails adjusted some suggestions:\n- " + "\n- ".join(notes))
+
     selections: list[bool] = []
-    for i, s in enumerate(st.session_state.suggestions):
+    for i, s in enumerate(sanitized):
         track = s.get("track", "?")
         param = s.get("param", "?")
         if param == "volume":
@@ -136,8 +178,8 @@ if st.session_state.get("suggestions"):
     with col_b:
         if st.button("Apply selected"):
             client = st.session_state.client
-            applied, skipped = 0, []
-            for s, on in zip(st.session_state.suggestions, selections):
+            applied, skipped, capped = 0, [], []
+            for s, on in zip(sanitized, selections):
                 if not on:
                     continue
                 idx = _name_to_index(s.get("track", ""))
@@ -146,14 +188,18 @@ if st.session_state.get("suggestions"):
                     continue
                 if s.get("param") == "volume":
                     cur = client.get_track_volume(idx)
-                    new = max(0.0, min(1.0, cur + db_to_fader_delta(float(s.get("delta_db", 0)))))
+                    proposed = cur + db_to_fader_delta(float(s.get("delta_db", 0)))
+                    new = max(0.0, min(FADER_CEILING, proposed))
+                    if new != proposed:
+                        capped.append(f"{s.get('track')} fader capped at unity")
                     client.set_track_volume(idx, new)
                     applied += 1
                 elif s.get("param") == "pan":
-                    new = max(-1.0, min(1.0, float(s.get("value", 0))))
-                    client.set_track_panning(idx, new)
+                    client.set_track_panning(idx, float(s.get("value", 0)))
                     applied += 1
             st.success(f"Applied {applied} change(s).")
+            if capped:
+                st.warning("Headroom guardrail: " + "; ".join(capped))
             if skipped:
                 st.warning("Skipped: " + ", ".join(skipped))
 
