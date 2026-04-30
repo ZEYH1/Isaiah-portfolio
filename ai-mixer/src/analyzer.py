@@ -32,7 +32,7 @@ def analyze(path: str) -> TrackFeatures:
     to_db = lambda x: float(librosa.amplitude_to_db(np.array([x]))[0])
 
     return TrackFeatures(
-        tempo=float(tempo),
+        tempo=float(np.asarray(tempo).item()),
         rms_db=rms_db,
         spectral_centroid_hz=centroid,
         low_band_db=to_db(low),
