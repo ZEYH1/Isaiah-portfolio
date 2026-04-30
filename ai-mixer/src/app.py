@@ -42,7 +42,7 @@ if "track_names" in st.session_state:
 st.sidebar.header("Style")
 genre = st.sidebar.selectbox(
     "Target genre",
-    ["Auto", "UK Garage", "House", "Trap"],
+    ["Auto", "UK Garage", "Garage", "House", "Deep House", "Drill", "Trap"],
     help="Tells Claude which conventions from the loaded guides apply.",
 )
 
