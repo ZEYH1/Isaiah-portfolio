@@ -11,14 +11,24 @@ ai-mixer/
 ├── src/
 │   ├── analyzer.py       # librosa-based feature extraction
 │   ├── ableton_osc.py    # python-osc client for AbletonOSC
+│   ├── device_map.py     # EQ/compressor/send helpers
 │   ├── ai.py             # Claude suggestion engine
 │   ├── knowledge.py      # loads guides from knowledge/
 │   └── app.py            # Streamlit UI
 ├── knowledge/            # mixing guides Claude reads on every call
 │   └── 00-3d-mixing-guide.md
+├── template/             # one-time Live template setup
+│   └── AI_Mixer_Template_Setup.md
 ├── references/           # drop reference tracks here (gitignored)
 └── tests/
 ```
+
+## One-time Live template setup
+
+Before the EQ / Compressor / Send features work, you need to set up a
+standardized Ableton template with five named return tracks. See
+`template/AI_Mixer_Template_Setup.md` for step-by-step instructions. Save
+it as your default Live Set so every new project starts ready to go.
 
 ## Adding new mixing guides
 

@@ -59,6 +59,8 @@ class AbletonClient:
             time.sleep(0.01)
         raise TimeoutError(f"No reply from Ableton for {address} within {timeout}s")
 
+    # ----- Tracks -----
+
     def get_track_names(self) -> list[str]:
         reply = self._query("/live/song/get/track_names")
         return [str(name) for name in reply]
@@ -76,6 +78,81 @@ class AbletonClient:
 
     def set_track_panning(self, track_index: int, pan: float) -> None:
         self.client.send_message("/live/track/set/panning", [track_index, float(pan)])
+
+    # ----- Devices -----
+
+    def get_track_device_names(self, track_index: int) -> list[str]:
+        reply = self._query("/live/track/get/devices/name", [track_index])
+        return [str(n) for n in reply]
+
+    def get_track_device_class_names(self, track_index: int) -> list[str]:
+        reply = self._query("/live/track/get/devices/class_name", [track_index])
+        return [str(n) for n in reply]
+
+    def get_device_parameter_names(self, track_index: int, device_index: int) -> list[str]:
+        reply = self._query(
+            "/live/device/get/parameters/name", [track_index, device_index]
+        )
+        return [str(n) for n in reply]
+
+    def get_device_parameter_values(self, track_index: int, device_index: int) -> list[float]:
+        reply = self._query(
+            "/live/device/get/parameters/value", [track_index, device_index]
+        )
+        return [float(v) for v in reply]
+
+    def set_device_parameter(
+        self, track_index: int, device_index: int, parameter_index: int, value: float
+    ) -> None:
+        self.client.send_message(
+            "/live/device/set/parameter/value",
+            [track_index, device_index, parameter_index, float(value)],
+        )
+
+    # ----- Return tracks -----
+
+    def get_return_track_names(self) -> list[str]:
+        reply = self._query("/live/song/get/return_track_names")
+        return [str(n) for n in reply]
+
+    def get_return_device_class_names(self, return_index: int) -> list[str]:
+        reply = self._query(
+            "/live/return_track/get/devices/class_name", [return_index]
+        )
+        return [str(n) for n in reply]
+
+    def get_return_device_parameter_names(
+        self, return_index: int, device_index: int
+    ) -> list[str]:
+        reply = self._query(
+            "/live/return_track/device/get/parameters/name",
+            [return_index, device_index],
+        )
+        return [str(n) for n in reply]
+
+    def set_return_device_parameter(
+        self,
+        return_index: int,
+        device_index: int,
+        parameter_index: int,
+        value: float,
+    ) -> None:
+        self.client.send_message(
+            "/live/return_track/device/set/parameter/value",
+            [return_index, device_index, parameter_index, float(value)],
+        )
+
+    # ----- Sends -----
+
+    def get_track_send(self, track_index: int, send_index: int) -> float:
+        reply = self._query("/live/track/get/send", [track_index, send_index])
+        return float(reply[-1])
+
+    def set_track_send(self, track_index: int, send_index: int, value: float) -> None:
+        self.client.send_message(
+            "/live/track/set/send",
+            [track_index, send_index, float(value)],
+        )
 
 
 def db_to_fader_delta(delta_db: float) -> float:
